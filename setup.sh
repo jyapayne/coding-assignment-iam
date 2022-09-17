@@ -6,4 +6,4 @@ python3 -m venv .venv
 source .venv/bin/activate
 
 # install deps
-pip install fastapi uvicorn[standard] websockets
+pip install -r requirements.txt
