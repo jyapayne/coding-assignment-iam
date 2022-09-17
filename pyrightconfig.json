@@ -1,0 +1,10 @@
+{
+  "exclude": [ ".venv" ],
+  "venv": ".venv",
+  "useLibraryCodeForTypes": true,
+
+  "reportTypeshedErrors": false,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false
+
+}
