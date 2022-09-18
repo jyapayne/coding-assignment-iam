@@ -1,5 +1,15 @@
 # Rock Paper Scissors Game
 
+## Instructions
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+uvicorn app.main:app --host 0.0.0.0 --port 8080
+```
+
 ## Stack
 
 I used uvicorn + FastAPI for the backend, and simple JS + HTML + Bulma
