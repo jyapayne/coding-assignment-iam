@@ -23,7 +23,7 @@
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button id="play-btn" class="button is-link">Play Game!</button>
+                                <button id="play-btn" class="button is-link" onclick="playGame()">Play Game!</button>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button id="resume-btn" class="button is-link">Resume Game!</button>
+                                <button id="resume-btn" class="button is-link" onclick="resumeGame()">Resume Game!</button>
                             </div>
                         </div>
                     </div>
@@ -64,6 +64,53 @@
         </section>
 
         <script type="text/javascript">
+            function playGame() {
+                let p1Name = document.getElementById("player1-name").value;
+                let p2Name = document.getElementById("player2-name").value;
+                let data = {}
+                if (typeof p1Name === 'string' && p1Name.trim().length === 0){
+                    alert("Player 1 name must be filled!");
+                    return;
+                }
+
+                if (typeof p2Name === 'string' && p2Name.trim().length === 0){
+                    data = {
+                        player1_name: p1Name
+                    };
+                }
+                else {
+                    data = {
+                        player1_name: p1Name,
+                        player2_name: p2Name
+                    };
+                }
+
+                fetch("{{url_for('start_game')}}", {
+                  method: 'POST', // or 'PUT'
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(data),
+                })
+                .then((response) => response.json())
+                .then(data => {
+                    window.location.href = data.game_url;
+                })
+                .catch(function(err) {
+                    console.info(err + " url: " + url);
+                });
+
+            }
+            function resumeGame() {
+                let gameCode = document.getElementById("game-code").value;
+                if (typeof gameCode === 'string' && gameCode.trim().length === 0){
+                    // handle error
+                    alert("Game code must be filled!");
+                    return;
+                }
+                console.log(gameCode);
+                window.location.href = "{{url_for('game')}}" + "?game_code="+ gameCode;
+            }
         </script>
     </body>
 </html>
