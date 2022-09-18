@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Error | Rock Paper Scissors</title>
+    </head>
+    <link href="{{ url_for('static', path='/css/bulma.min.css') }}" rel="stylesheet">
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Error</p>
+                            </div>
+                            <div class="message-body">
+                                {{ message }}
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+        </script>
+    </body>
+</html>

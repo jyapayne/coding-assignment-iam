@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+    </head>
+    <link href="{{ url_for('static', path='/css/bulma.min.css') }}" rel="stylesheet">
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Player 1 Name</label>
+                            <div class="control">
+                                <input id="player1-name" class="input" type="text" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Player 2 Name (Optional)</label>
+                            <div class="control">
+                                <input id="player2-name" class="input" type="text" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button id="play-btn" class="button is-link">Play Game!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <div class="field is-horizontal is-justify-content-center">
+                            <div class="field-body">
+                                <div class="field-label">
+                                    <label class="label">OR</label>
+                                </div>
+                                <div class="field has-addons">
+                                    <div class="control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Game Code</label>
+                            <div class="control">
+                                <input id="game-code" class="input" type="text" placeholder="Game Code: JDPB">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button id="resume-btn" class="button is-link">Resume Game!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="text/javascript">
+        </script>
+    </body>
+</html>
