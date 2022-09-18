@@ -43,3 +43,7 @@ and usability improvements that could be utilized with more time.
 
 Better UI outline and arrangement could also be done, but is limited by
 my design skills. I would probably enlist a designer to help with that.
+
+I could have added a one time public/private keypair for signing and 
+validating the post requests so that you can't just increase your own
+score by using fabricated post requests.
