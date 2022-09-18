@@ -83,6 +83,7 @@ class Game:
 
 
 class GameManager:
+    """The game manager controls access to the game object and manages saves"""
     save_path = "saves"
     save_file = "{game_code}.savefile"
 
@@ -92,6 +93,7 @@ class GameManager:
         self.load_games()
 
     def load_games(self):
+        """Load all saved games from the save path"""
         if not os.path.exists(self.save_path):
             return
 
@@ -103,11 +105,13 @@ class GameManager:
                     self.games.update(pickle.load(f))
 
     def get_game(self, game_code: str) -> Game:
+        """Get an existing game. If a game is not found, throw an exception"""
         if game_code not in self.games:
             raise GameNotFoundError()
         return self.games[game_code]
 
     def new_game(self, player1: Player, player2: Player) -> Game:
+        """Start a new game in the game manager"""
         code = GAME_CODES[self.game_code_index]
         self.games[code] = Game(code, player1, player2)
         self.game_code_index += 1
@@ -154,6 +158,7 @@ def create_game_codes() -> list[str]:
     return codes
 
 
+# Global variables for game state
 GAME_MANAGER = GameManager()
 GAME_CODES: list[str] = create_game_codes()
 
@@ -178,6 +183,7 @@ async def increase_score(_: Request, inc_score_info: IncreaseScoreInfo, resp: Re
 
 @app.post("/start-game", response_class=HTMLResponse)
 async def start_game(request: Request, players_info: PlayersInfo):
+    """Post route for creating the game info"""
     player2 = (
         Player(players_info.player2_name)
         if players_info.player2_name is not None
@@ -195,6 +201,7 @@ async def start_game(request: Request, players_info: PlayersInfo):
 
 @app.get("/game", response_class=HTMLResponse)
 async def game(request: Request, game_code: str):
+    """The main game route. Play the game here"""
     try:
         game = GAME_MANAGER.get_game(game_code)
         return templates.TemplateResponse(
@@ -209,4 +216,5 @@ async def game(request: Request, game_code: str):
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
+    """The route to enter information to play the game"""
     return templates.TemplateResponse("index.html", {"request": request})
